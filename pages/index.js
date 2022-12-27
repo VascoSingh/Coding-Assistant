@@ -1,22 +1,90 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
+import { useState } from 'react';
+
 
 const Home = () => {
+  const [userInput, setUserInput] = useState('')
+  const [apiOutput, setApiOutput] = useState('')
+  const [apiOutputCode, setApiOutputCode] = useState('')
+const [isGenerating, setIsGenerating] = useState(false)
+
+const callGenerateEndpoint = async () => {
+  setIsGenerating(true);
+  
+  console.log("Calling OpenAI...")
+  const response = await fetch('/api/generate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userInput }),
+  });
+
+  const data = await response.json();
+  console.log(`${data.code.text}`);
+  const outputCode = data.code.text;
+  const outputSumm = data.summ.text;
+  setApiOutput(`${outputSumm}`);
+  setApiOutputCode(`${outputCode}`);
+  setIsGenerating(false);
+}
+  const onUserChangedText = (event) => {
+    console.log(event.target.value);
+    setUserInput(event.target.value);
+  };
   return (
     <div className="root">
-      <Head>
-        <title>GPT-3 Writer | buildspace</title>
-      </Head>
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>sup, insert your headline here</h1>
+            <h1>Stuck on a coding problem?</h1>
           </div>
           <div className="header-subtitle">
-            <h2>insert your subtitle here</h2>
+            <h2>Ask a question like: How would I find if a given number is a palindrome in C++?</h2>
           </div>
         </div>
+        {/* Add this code here*/}
+        <div className="prompt-container">
+  <textarea
+    placeholder="start typing here"
+    className="prompt-box"
+    value={userInput}
+    onChange={onUserChangedText}
+  />
+  <div className="prompt-buttons">
+  <a
+    className={isGenerating ? 'generate-button loading' : 'generate-button'}
+    onClick={callGenerateEndpoint}
+  >
+    <div className="generate">
+    {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
+    </div>
+  </a>
+</div>
+  {/* New code I added here */}
+  {apiOutput && (
+  <div className="output">
+    <div className="output-header-container">
+      <div className="output-header">
+        <h3>Code</h3>
+      </div>
+    <div className="output-content">
+      <p>{apiOutputCode}</p>
+    </div>
+    </div>
+    <div className="output-header-container">
+      <div className="output-header">
+        <h3>Explanation</h3>
+      </div>
+    <div className="output-content">
+      <p>{apiOutput}</p>
+    </div>
+    </div>
+  </div>
+)}
+</div>
       </div>
       <div className="badge-container grow">
         <a
