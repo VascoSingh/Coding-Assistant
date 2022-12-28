@@ -1,4 +1,5 @@
 {
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
     ["prismjs", {
         "languages": ["javascript", "css", "markup", "python"],
