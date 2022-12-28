@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
+import Code from "./components/Code";
 import { useState } from 'react';
 
 
@@ -70,9 +71,7 @@ const callGenerateEndpoint = async () => {
       <div className="output-header">
         <h3>Code</h3>
       </div>
-    <div className="output-content">
-      <p>{apiOutputCode}</p>
-    </div>
+      <Code code={apiOutputCode} language="python" />
     </div>
     <div className="output-header-container">
       <div className="output-header">
