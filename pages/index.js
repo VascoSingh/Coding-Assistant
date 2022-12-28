@@ -1,9 +1,7 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
-import Code from "./components/code.js";
+import Code from "../components/code.js";
 import { useState } from 'react';
-
 
 const Home = () => {
   const [userInput, setUserInput] = useState('')
