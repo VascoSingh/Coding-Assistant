@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
 import Code from "../components/code.js";
+import Highlight from '../components/highlight';
 import { useState } from 'react';
 import { Select } from '@chakra-ui/react'
 
@@ -8,7 +9,8 @@ const Home = () => {
   const [userInput, setUserInput] = useState('')
   const [apiOutput, setApiOutput] = useState('')
   const [apiOutputCode, setApiOutputCode] = useState('')
-const [isGenerating, setIsGenerating] = useState(false)
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [codeLanguage, setCodeLanguage] = useState('python')
 
 const callGenerateEndpoint = async () => {
   setIsGenerating(true);
@@ -53,10 +55,16 @@ const callGenerateEndpoint = async () => {
     onChange={onUserChangedText}
   />
   <div className="prompt-buttons">
-  <Select placeholder='Select language'>
-  <option value='option1'>Python</option>
-  <option value='option2'>Java</option>
-  <option value='option3'>C++</option>
+  <div>
+      <Highlight text='This is some "quoted text" that we want to highlight.' />
+    </div>
+  <Select placeholder='Select language'
+  onChange={(e) => setCodeLanguage(e.target.value)}>
+  <option value='python'>Python</option>
+  <option value='java'>Java</option>
+  <option value='c++'>C++</option>
+  <option value='markup'>Markup</option>
+  <option value='css'>Css</option>
 </Select>
   <a
     className={isGenerating ? 'generate-button loading' : 'generate-button'}
@@ -73,7 +81,7 @@ const callGenerateEndpoint = async () => {
       <div className="output-header">
         <h3>Code</h3>
       </div>
-      <Code code={apiOutputCode} language="python" />
+      <Code code={apiOutputCode} language={codeLanguage} />
     </div>
     <div className="output-header-container">
       <div className="output-header">
