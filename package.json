@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
+    "@chakra-ui/react": "^2.4.6",
+    "@chakra-ui/select": "^2.0.15",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "eslint": "8.27.0",
-    "eslint-config-next": "13.0.3",
+    "eslint-config-next": "^13.1.1",
     "framer-motion": "^6.5.1",
     "next": "^13.0.3",
     "openai": "^3.1.0",

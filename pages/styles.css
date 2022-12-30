@@ -291,7 +291,7 @@ textarea {
     overflow: hidden;
     padding: 0px;
     position: relative;
-    width: 50%;
+    width: 60%;
 }
 
 .output-header h3 {
@@ -312,7 +312,7 @@ textarea {
     outline: none;
     display: flex;
     font-size: 16px;
-    max-width: 100%;
+    max-width: 60%;
     margin: 1px;
     flex-direction: column;
     justify-content: flex-start;

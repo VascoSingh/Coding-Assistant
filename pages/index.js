@@ -2,6 +2,7 @@ import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
 import Code from "../components/code.js";
 import { useState } from 'react';
+import { Select } from '@chakra-ui/react'
 
 const Home = () => {
   const [userInput, setUserInput] = useState('')
@@ -44,7 +45,6 @@ const callGenerateEndpoint = async () => {
             <h2>Ask a question like: How would I find if a given number is a palindrome in C++?</h2>
           </div>
         </div>
-        {/* Add this code here*/}
         <div className="prompt-container">
   <textarea
     placeholder="start typing here"
@@ -53,6 +53,11 @@ const callGenerateEndpoint = async () => {
     onChange={onUserChangedText}
   />
   <div className="prompt-buttons">
+  <Select placeholder='Select language'>
+  <option value='option1'>Python</option>
+  <option value='option2'>Java</option>
+  <option value='option3'>C++</option>
+</Select>
   <a
     className={isGenerating ? 'generate-button loading' : 'generate-button'}
     onClick={callGenerateEndpoint}
@@ -62,7 +67,6 @@ const callGenerateEndpoint = async () => {
     </div>
   </a>
 </div>
-  {/* New code I added here */}
   {apiOutput && (
   <div className="output">
     <div className="output-header-container">
