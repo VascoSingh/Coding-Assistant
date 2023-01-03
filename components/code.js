@@ -5,6 +5,7 @@ import "prismjs/components/prism-jsx";
 export default function Code({ code, language }) {
   useEffect(() => {
     Prism.highlightAll();
+    window.alert(language);
   }, []);
   return (
     <div className="Code">
