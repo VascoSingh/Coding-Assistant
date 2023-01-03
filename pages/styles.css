@@ -27,12 +27,11 @@ body {
     flex-flow: column nowrap;
     gap: 10px;
     height: fit-content;
-    max-width: 975px;
+    min-width: 1500px;
     overflow: auto;
     padding-top: 30px;
     position: relative;
     width: auto;
-    gap: 36px;
 }
 
 .header {    

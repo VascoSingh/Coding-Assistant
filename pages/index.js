@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
 import Code from "../components/code.js";
-import Highlight from '../components/highlight';
 import { useState } from 'react';
 import { Select } from '@chakra-ui/react'
 
@@ -55,9 +54,6 @@ const callGenerateEndpoint = async () => {
     onChange={onUserChangedText}
   />
   <div className="prompt-buttons">
-  <div>
-      <Highlight text='This is some "quoted text" that we want to highlight.' />
-    </div>
   <Select placeholder='Select language'
   onChange={(e) => setCodeLanguage(e.target.value)}>
   <option value='python'>Python</option>
